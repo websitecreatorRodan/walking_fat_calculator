@@ -153,7 +153,15 @@ body, html {
             background-size: cover; /* Resize the background image to cover the entire container */
         }
 
-
+        footer {
+            background-color: #00000032;
+            color: #ffffff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -161,7 +169,7 @@ body, html {
         <h1 id="sss">Calories Burned by Walking Calculator</h1>
         <input type="number" id="weight" placeholder="Your weight in kg" min="1">
         <input type="number" id="distance" placeholder="Distance walked in km" min="0.1" step="0.1">
-        <button class="animated-button" id="sss" onclick="calculateCalories()"><span>Hover Over Me!</span>
+        <button class="animated-button" id="sss" onclick="calculateCalories()"><span>Calculate</span>
         <div class="particle"></div>
         <div class="particle"></div>
         <div class="particle"></div>
@@ -198,4 +206,7 @@ body, html {
 
     </script>
 </body>
+<footer>
+    <p>&copy; Rodan</p>
+</footer>
 </html>
