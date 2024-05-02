@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+15&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calories Burned by Walking Calculator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #282c34;
+            color: #fff;
+        }
+        .container {
+            text-align: center;
+        }
+        input, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+        }
+        input {
+            width: 200px;
+        }
+        button {
+            color: #000;
+            background: #fff;
+            cursor: pointer;
+            transition: box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        button:hover {
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+      
+         .animated-button {
+            padding: 10px 25px;
+            font-size: 20px;
+            color: #000; /* Black text for contrast */
+            background: #ffffffaa; /* Pure white background */
+            border: 1px solid #000; /* Black border for definition */
+            border-radius: 5px;
+            cursor: pointer;
+            outline: none;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* Subtle shadow for depth */
+            transition: box-shadow 0.3s ease;
+        }
+
+        .animated-button span {
+            position: relative;
+            z-index: 2;
+        }
+
+        .animated-button::before,
+        .particle {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background-image: radial-gradient(circle, rgba(0,0,0,0.7), transparent); /* Default black particle */
+            background-repeat: no-repeat;
+            filter: blur(8px);
+            z-index: 1;
+            animation: fadeInOut 3s linear infinite;
+        }
+
+        .animated-button::before {
+            top: -50%;
+            left: -25%;
+            animation-delay: 0s;
+        }
+
+        .particle {
+            --particle-color: rgba(255,0,0,0.7); /* Default red */
+        }
+
+        .particle:nth-child(2) {
+            top: 50%;
+            left: 120%;
+            animation-delay: 1.5s;
+            background-image: radial-gradient(circle, var(--particle-color, rgba(255,0,0,0.7)), transparent);
+        }
+
+        .particle:nth-child(3) {
+            top: 20%;
+            left: -40%;
+            animation-delay: 0.5s;
+            --particle-color: rgba(0,255,0,0.7); /* Green */
+            background-image: radial-gradient(circle, var(--particle-color), transparent);
+        }
+
+        .particle:nth-child(4) {
+            top: 80%;
+            left: 130%;
+            animation-delay: 2s;
+            --particle-color: rgba(0,0,255,0.7); /* Blue */
+            background-image: radial-gradient(circle, var(--particle-color), transparent);
+        }
+
+        .animated-button:hover .particle {
+            transform: scale(1.2);
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(0);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        #sss {
+  font-family: "Jersey 15", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+      
+#weight{
+    font-family: "Jersey 15", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+#distance{
+    font-family: "Jersey 15", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+body, html {
+            height: 100%; /* Full height */
+            margin: 0;    /* Remove default margin */
+            padding: 0;   /* Remove default padding */
+        }
+        body {
+            background-image: url('https://static.toiimg.com/photo/92331519.cms'); /* Replace with your image URL */
+            background-position: center; /* Center the background image */
+            background-repeat: no-repeat; /* Do not repeat the background */
+            background-size: cover; /* Resize the background image to cover the entire container */
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="sss">Calories Burned by Walking Calculator</h1>
+        <input type="number" id="weight" placeholder="Your weight in kg" min="1">
+        <input type="number" id="distance" placeholder="Distance walked in km" min="0.1" step="0.1">
+        <button class="animated-button" id="sss" onclick="calculateCalories()"><span>Hover Over Me!</span>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div></button>
+        <div id="result"></div>
+        <div id="fatBurned"></div>
+    </div>
+
+    <script>
+  function calculateCalories() {
+    const weight = parseFloat(document.getElementById('weight').value);
+    const distance = parseFloat(document.getElementById('distance').value);
+
+    console.log('Weight:', weight);
+    console.log('Distance:', distance);
+
+    if (weight > 0 && distance > 0) {
+        const caloriesPerKm = weight * 0.5;  // Simplified calories burned formula
+        const totalCalories = caloriesPerKm * distance;
+        console.log('Calories per Km:', caloriesPerKm);
+        console.log('Total Calories:', totalCalories);
+
+        const fatBurned = totalCalories / (7700 * 0.453592); // Calculate fat burned in kg
+        console.log('Fat Burned (kg):', fatBurned);
+
+        document.getElementById('result').innerText = `Estimated Calories Burned: ${totalCalories.toFixed(2)} calories`;
+        document.getElementById('fatBurned').innerText = `Fat Burned: ${fatBurned.toFixed(2)} kilograms`;
+    } else {
+        document.getElementById('result').innerText = "";
+        document.getElementById('fatBurned').innerText = "";
+    }
+}
+
+
+    </script>
+</body>
+</html>
